@@ -16,11 +16,15 @@ async def start(message: types.Message):
                 types.InlineKeyboardButton(text="О нас", callback_data="about_us")
             ],
             [
-                types.InlineKeyboardButton(text="Отзывы", callback_data="feedback")
+                types.InlineKeyboardButton(text="Отзывы", callback_data="review")
             ],
             [
                 types.InlineKeyboardButton(text="Наши вакансии", callback_data="vacancies")
+            ],
+            [
+                types.InlineKeyboardButton(text="Оставить отзыв", callback_data="feedback")
             ]
+
         ]
     )
     await message.answer(f'Привет, {message.from_user.first_name}', reply_markup=kb)
@@ -29,7 +33,7 @@ async def about_us(call: types.callback_query):
     await call.answer(f'Чайхана Navat - оазис восточной культуры, где гости испытывают уникальное путешествие'
                              f'через изумительные вкусы, аутентичную эстетику и безупречное гостеприимство.')
 
-@start_router.callback_query(F.data=='feedback')
+@start_router.callback_query(F.data=='review')
 async def feedback(call: types.callback_query):
     await call.answer(f'Это лучший ресторан для знакомства с кухней Киргизии.')
 
