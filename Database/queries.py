@@ -1,12 +1,19 @@
 class Queries:
     CREATE_REVIEW_RESULTS_TABLE = """
-    CREATE IF NOT EXISTS TABLE restauran_review(
+    CREATE TABLE IF NOT EXISTS restauran_review(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name = State()
-    instagram_username = State()
-    visit_date = State()
-    food_rating = State()
-    cleanliness_rating = State()
-    extra_comments = State()
+    name TEXT,
+    instagram_username TEXT,
+    visit_date DATE,
+    food_rating INTEGER,
+    cleanliness_rating INTEGER,
+    extra_comments TEXT
     )
+    """
+
+
+    INSERT_INTO_RESTAURANT_REVIEW = """
+    insert into restauran_review  values(?, ?, ?, ?, ?, ?, ?)
+    
+    
     """
