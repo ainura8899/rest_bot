@@ -1,13 +1,14 @@
 import asyncio
 import logging
 
-from config import bot, dp,  database   # set_bot_commands
+from config import bot, dp, database   # set_bot_commands
 from handlers.echo import echo_router
 from handlers.start import start_router
 from handlers.recipes import recipe_router
 from handlers.my_info import my_info_router
 from handlers.dishes import dishes_router
 from handlers.review_dialog import review_router
+from handlers.menu import menu_router
 
 async def on_startup(bot):
     print ("Бот запустился")
@@ -22,6 +23,7 @@ async def main():
     dp.include_router(my_info_router)
     dp.include_router(dishes_router)
     dp.include_router(review_router)
+    dp.include_router(menu_router)
 
     # в самом конце
     dp.include_router(echo_router)

@@ -1,5 +1,5 @@
 class Queries:
-    CREATE_REVIEW_RESULTS_TABLE = """
+    CREATE_REVIEW_RESULTS_TABLE = '''
     CREATE TABLE IF NOT EXISTS restauran_review(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT,
@@ -9,11 +9,36 @@ class Queries:
     cleanliness_rating INTEGER,
     extra_comments TEXT
     )
-    """
+    '''
 
 
-    INSERT_INTO_RESTAURANT_REVIEW = """
+    INSERT_INTO_RESTAURANT_REVIEW = '''
     insert into restauran_review  values(?, ?, ?, ?, ?, ?, ?)
-    
-    
-    """
+    '''
+
+    CREATE_TABLE_CATEGORIES = '''
+    CREATE TABLE IF NOT EXISTS categories(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR (255),
+    UNIQUE (name))'''
+
+
+    CREATE_TABLE_DISHES = '''
+    CREATE TABLE IF NOT EXISTS dishes(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title VARCHAR (255),
+    price INTEGER,
+    photo TEXT,
+    category_id INTEGER,
+    UNIQUE (title),
+    FOREIGN KEY (category_id) REFERENCES categories(id))'''
+
+    INSERT_INTO_CAT = '''
+    INSERT OR IGNORE INTO categories (name) VALUES ('drinks'), ('dishes'), ('salads')'''
+
+    INSERT_INTO_DISHES = '''
+    INSERT OR IGNORE INTO dishes (title, price, photo, category_id) VALUES 
+    ('plov', 365, 'images/plov.jpg', 2), ('shashlyk', 415, 'images/shashlyk.jpg', 2),
+    ('greek salad', 390, 'images/greek salad.jpg', 3), ('tsezar salad', 485, 'images/tsezar.jpeg', 3),
+     ('lemonade', 350, 'images/lemonade.jpg', 1), ('tea', 300, 'images/tea.jpg', 1)
+    '''
