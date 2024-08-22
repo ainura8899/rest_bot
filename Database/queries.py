@@ -34,11 +34,11 @@ class Queries:
     FOREIGN KEY (category_id) REFERENCES categories(id))'''
 
     INSERT_INTO_CAT = '''
-    INSERT OR IGNORE INTO categories (name) VALUES ('drinks'), ('dishes'), ('salads')'''
+    INSERT OR IGNORE INTO categories (name) VALUES ('Напитки'), ('Блюда'), ('Салаты')'''
 
     INSERT_INTO_DISHES = '''
     INSERT OR IGNORE INTO dishes (title, price, photo, category_id) VALUES 
-    ('plov', 365, 'images/plov.jpg', 2), ('shashlyk', 415, 'images/shashlyk.jpg', 2),
-    ('greek salad', 390, 'images/greek salad.jpg', 3), ('tsezar salad', 485, 'images/tsezar.jpeg', 3),
-     ('lemonade', 350, 'images/lemonade.jpg', 1), ('tea', 300, 'images/tea.jpg', 1)
+    ('Плов', 365, 'images/plov.jpg', 2), ('Шашлык', 415, 'images/shashlyk.jpg', 2),
+    ('Греческий салат', 390, 'images/greek salad.jpg', 3), ('Салат цезарь', 485, 'images/tsezar.jpeg', 3),
+     ('Лимонад', 350, 'images/lemonade.jpg', 1), ('Чай', 300, 'images/tea.jpg', 1)
     '''

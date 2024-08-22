@@ -3,6 +3,7 @@ from aiogram import types, Router, F
 from aiogram.filters import Command
 import random
 from aiogram.types import FSInputFile
+from pprint import pprint
 
 
 menu_router = Router()
@@ -25,12 +26,20 @@ signal = ('drinks', 'dishes', 'salads')
 async def dishes(call:types.CallbackQuery):
     query='''
     SELECT * FROM dishes JOIN categories ON dishes.category_id = categories.id WHERE categories.name =?'''
-
-    data=database.fetch(
+    kb = types.ReplyKeyboardRemove()
+    dishes=database.fetch(
         query=query,
         params=(call.data,),
     )
-    for i in data:
-        photo = FSInputFile(i[3])
-        await call.message.answer_photo(photo=photo, caption=f'Наименование: {i[1]}\n'
-                                        f'Цена: {i[2]}\n')
+
+    pprint(dishes)
+    await call.message.answer(
+        f'<Блюда категории> {dishes}: ',
+        reply_markup=kb
+    )
+
+    for dish in dishes:
+        photo = FSInputFile(dish.get('photo'))
+        await call.message.answer_photo(photo=photo,
+                                        caption=f'Наименование: {dish.get('title')}\n'
+                                        f'Цена: {dish.get('price')}сом')
