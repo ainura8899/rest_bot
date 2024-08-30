@@ -4,7 +4,8 @@ import logging
 from config import bot, dp, database   # set_bot_commands
 from handlers import(
     private_router,
-    group_router
+    group_router,
+    house_router
 )
 
 
@@ -24,10 +25,12 @@ async def main():
     # dp.include_router(review_router)
     # dp.include_router(menu_router)
 
+
+    dp.startup.register(on_startup)
     # в самом конце
     # dp.include_router(echo_router)
 
-    dp.startup.register(on_startup)
+
     # запуск бота
     await dp.start_polling(bot)
 
